@@ -3,16 +3,13 @@ import re
 
 fileName = sys.argv[1]
 file = open('../' + fileName, "r")
-fileParse = open('../' + fileName, "r")
-textString = file.read()
-lines = fileParse.readlines()
+fileString = file.read().lower()
+fileWordList = fileString.split()
 
-myDiction = {'a': 0}
+myDiction = {}
 
-for line in lines:
-    for word in line.split():
-        occurList = re.findall('\\b'+word.lower()+'\\b', textString)
-        occur = len(occurList)
-        myDiction[word] = occur
+for word in fileWordList:
+    occur = len(re.findall('\\b'+word+'\\b', fileString))
+    myDiction[word] = occur
 
 print(myDiction)
